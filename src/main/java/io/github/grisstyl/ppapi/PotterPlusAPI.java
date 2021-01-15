@@ -1,17 +1,15 @@
 package io.github.grisstyl.ppapi;
 
 import io.github.grisstyl.ppapi.misc.PluginLogger;
-import io.github.grisstyl.ppapi.misc.StringUtilities;
 import lombok.Getter;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
-import org.bukkit.permissions.Permission;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.command.Command;
 import org.bukkit.plugin.java.annotation.command.Commands;
+import org.bukkit.plugin.java.annotation.permission.Permission;
+import org.bukkit.plugin.java.annotation.permission.Permissions;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
@@ -19,8 +17,6 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import static io.github.grisstyl.ppapi.misc.StringUtilities.color;
 
 @Plugin(
         name = "PotterPlusAPI",
@@ -31,18 +27,23 @@ import static io.github.grisstyl.ppapi.misc.StringUtilities.color;
 )
 @Author("T0xicTyler")
 @Commands(
-        @Command(name = "ppapi")
+        @Command(
+                name = "potterplusapi",
+                aliases = {"ppapi"}
+        )
+)
+@Permissions(
+        @Permission(
+                name = "potterplus.admin"
+        )
 )
 public class PotterPlusAPI extends JavaPlugin implements CommandExecutor {
 
-    public static final Permission PERMISSION_ADMIN;
-
-    static {
-        PERMISSION_ADMIN = new Permission("potterplus.admin");
-    }
-
     @Getter
     private PotterPlusAPI plugin;
+
+    @Getter
+    private PotterPlusAPICommand command;
 
     static Connection connection;
 
@@ -76,6 +77,8 @@ public class PotterPlusAPI extends JavaPlugin implements CommandExecutor {
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+
+        this.command = new PotterPlusAPICommand(this);
 
         PluginLogger.atInfo().with("Attempting to open MySQL connection...")
                 .print();
@@ -119,32 +122,5 @@ public class PotterPlusAPI extends JavaPlugin implements CommandExecutor {
         }
 
         HandlerList.unregisterAll(this);
-    }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!StringUtilities.equalsAny(label, "ppapi", "potterplusapi")) {
-            String message = String.format("Label '%s' got parsed by PotterPlusAPI command?", label);
-
-            PluginLogger.atWarn()
-                    .with(message).print();
-
-            return true;
-        }
-
-        if (!sender.hasPermission(PERMISSION_ADMIN)) {
-            sender.sendMessage(StringUtilities.color(" &4&lX &cYou are not allowed to do that!"));
-
-            return true;
-        }
-
-        PluginDescriptionFile pdFile = plugin.getDescription();
-
-        String version = pdFile.getVersion();
-        String message = String.format("PotterPlusAPI version %s", version);
-
-        sender.sendMessage(message);
-
-        return true;
     }
 }

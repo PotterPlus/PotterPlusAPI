@@ -52,7 +52,7 @@ public class StringUtilities {
     }
 
     /**
-     * Translates hex color codes with the default format (ex. &#000000#).
+     * Translates hex colors.
      * @param message The message.
      * @return The colored message.
      */
@@ -61,7 +61,7 @@ public class StringUtilities {
     }
 
     /**
-     * Colors a String. First translates color codes (ex. "&6") then translates hex codes (ex. "&#000000#").
+     * Colors a String.
      * @param str The String to color.
      * @return The colored String.
      */

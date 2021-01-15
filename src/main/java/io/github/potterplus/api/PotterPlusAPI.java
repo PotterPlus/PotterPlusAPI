@@ -1,26 +1,20 @@
 package io.github.potterplus.api;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import io.github.potterplus.api.misc.PluginLogger;
 import io.github.potterplus.api.storage.DatabaseController;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.command.Command;
 import org.bukkit.plugin.java.annotation.command.Commands;
+import org.bukkit.plugin.java.annotation.dependency.Dependency;
 import org.bukkit.plugin.java.annotation.permission.Permission;
 import org.bukkit.plugin.java.annotation.permission.Permissions;
-import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
-import org.bukkit.plugin.java.annotation.plugin.Plugin;
+import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import static io.github.potterplus.api.misc.PluginLogger.atInfo;
 import static io.github.potterplus.api.misc.PluginLogger.atWarn;
@@ -32,7 +26,11 @@ import static io.github.potterplus.api.misc.PluginLogger.atWarn;
 @ApiVersion(
         ApiVersion.Target.v1_13
 )
+@Description("API used by PotterPlus to power its many plugins.")
 @Author("T0xicTyler")
+@Website("https://github.com/PotterPlus/PotterPlusAPI")
+@Dependency("Magic")
+@LogPrefix("PPAPI")
 @Commands(
         @Command(
                 name = "potterplusapi",
@@ -85,7 +83,7 @@ public class PotterPlusAPI extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
-
+        database.disconnect();
 
         HandlerList.unregisterAll(this);
     }

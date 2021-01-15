@@ -49,11 +49,6 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
-
-        <repository>
-            <id>elmakers</id>
-            <url>https://maven.elmakers.com/repository/</url>
-        </repository>
     </repositories>
 
     <dependencies>

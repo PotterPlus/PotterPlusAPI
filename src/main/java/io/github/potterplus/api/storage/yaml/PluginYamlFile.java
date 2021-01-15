@@ -1,6 +1,6 @@
-package io.github.grisstyl.ppapi.file;
+package io.github.potterplus.api.storage.yaml;
 
-import io.github.grisstyl.ppapi.misc.PluginLogger;
+import io.github.potterplus.api.misc.PluginLogger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

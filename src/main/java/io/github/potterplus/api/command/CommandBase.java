@@ -1,4 +1,4 @@
-package io.github.grisstyl.ppapi.command;
+package io.github.potterplus.api.command;
 
 import lombok.Getter;
 import lombok.NonNull;

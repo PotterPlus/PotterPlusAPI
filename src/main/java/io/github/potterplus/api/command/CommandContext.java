@@ -1,6 +1,6 @@
-package io.github.grisstyl.ppapi.command;
+package io.github.potterplus.api.command;
 
-import io.github.grisstyl.ppapi.misc.StringUtilities;
+import io.github.potterplus.api.misc.StringUtilities;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package io.github.grisstyl.ppapi.file;
+package io.github.potterplus.api.storage.yaml;
 
-import io.github.grisstyl.ppapi.misc.PluginLogger;
+import io.github.potterplus.api.misc.PluginLogger;
 import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.configuration.InvalidConfigurationException;

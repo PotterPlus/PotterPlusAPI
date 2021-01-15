@@ -1,9 +1,9 @@
-package io.github.grisstyl.ppapi.gui;
+package io.github.potterplus.api.gui;
 
-import io.github.grisstyl.ppapi.gui.button.AutoGUIButton;
-import io.github.grisstyl.ppapi.gui.button.GUIButton;
-import io.github.grisstyl.ppapi.misc.ItemStackBuilder;
-import io.github.grisstyl.ppapi.misc.StringUtilities;
+import io.github.potterplus.api.gui.button.AutoGUIButton;
+import io.github.potterplus.api.gui.button.GUIButton;
+import io.github.potterplus.api.misc.ItemStackBuilder;
+import io.github.potterplus.api.misc.StringUtilities;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.*;
 
-import static io.github.grisstyl.ppapi.misc.StringUtilities.replaceMap;
+import static io.github.potterplus.api.misc.StringUtilities.replaceMap;
 
 /**
  * An extension of a basic GUI which allows for items to be paginated across as many pages as necessary along with a persistent toolbar.

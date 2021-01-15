@@ -1,6 +1,6 @@
-package io.github.grisstyl.ppapi.gui;
+package io.github.potterplus.api.gui;
 
-import io.github.grisstyl.ppapi.gui.button.GUIButton;
+import io.github.potterplus.api.gui.button.GUIButton;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;

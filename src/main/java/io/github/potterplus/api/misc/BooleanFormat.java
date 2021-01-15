@@ -1,4 +1,4 @@
-package io.github.grisstyl.ppapi.misc;
+package io.github.potterplus.api.misc;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

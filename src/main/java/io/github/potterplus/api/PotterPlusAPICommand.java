@@ -1,16 +1,14 @@
-package io.github.grisstyl.ppapi;
+package io.github.potterplus.api;
 
-import io.github.grisstyl.ppapi.command.CommandBase;
-import io.github.grisstyl.ppapi.command.CommandContext;
-import io.github.grisstyl.ppapi.misc.PluginLogger;
-import io.github.grisstyl.ppapi.misc.StringUtilities;
+import io.github.potterplus.api.command.CommandBase;
+import io.github.potterplus.api.command.CommandContext;
 import lombok.NonNull;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 import java.util.List;
 
-import static io.github.grisstyl.ppapi.misc.StringUtilities.equalsAny;
+import static io.github.potterplus.api.misc.StringUtilities.equalsAny;
 
 public class PotterPlusAPICommand extends CommandBase<PotterPlusAPI> {
 
@@ -55,9 +53,8 @@ public class PotterPlusAPICommand extends CommandBase<PotterPlusAPI> {
                 PluginDescriptionFile pdFile = getPlugin().getDescription();
 
                 String version = pdFile.getVersion();
-                String message = String.format("&dPotterPlusAPI version &e%s", version);
 
-                context.sendMessage(message);
+                context.sendMessage("&dPotterPlusAPI version &e" + version);
             }
         }
     }

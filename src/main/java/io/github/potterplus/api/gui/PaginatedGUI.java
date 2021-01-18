@@ -12,8 +12,6 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.*;
 
-import static io.github.potterplus.api.misc.StringUtilities.replaceMap;
-
 /**
  * An extension of a basic GUI which allows for items to be paginated across as many pages as necessary along with a persistent toolbar.
  */
@@ -43,7 +41,7 @@ public class PaginatedGUI extends GUI {
     private int currentPage;
 
     @Getter
-    private PaginatedGUISettings settings;
+    private final PaginatedGUISettings settings;
 
     public PaginatedGUI(String name) {
         super(name, 54);

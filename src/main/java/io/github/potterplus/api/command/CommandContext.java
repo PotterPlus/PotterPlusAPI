@@ -45,6 +45,14 @@ public class CommandContext {
     private final String[] args;
 
     /**
+     * Gets the sender's name (CONSOLE if it's console.)
+     * @return The sender's name.
+     */
+    public String getSenderName() {
+        return getSender().getName();
+    }
+
+    /**
      * Checks if the context's command sender is a player.
      * @return Whether or not the context's command sender is a player.
      */

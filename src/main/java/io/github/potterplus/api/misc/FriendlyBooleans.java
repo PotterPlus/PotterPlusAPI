@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class FriendlyBooleans {
 
-    private static List<String> trueValues = ImmutableList.of("true", "yes", "enable");
-    private static List<String> falseValues = ImmutableList.of("false", "no", "disable");
+    private static final List<String> trueValues = ImmutableList.of("true", "yes", "enable");
+    private static final List<String> falseValues = ImmutableList.of("false", "no", "disable");
 
     public static boolean isFriendlyBoolean(String s) {
         s = s.toLowerCase();

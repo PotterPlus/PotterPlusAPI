@@ -54,11 +54,23 @@ public class PluginLogger {
         return new Instance(Level.INFO);
     }
 
+    public static void atInfo(String s) {
+        atInfo().with(s).print();
+    }
+
     public static Instance atWarn() {
         return new Instance(Level.WARNING);
     }
 
+    public static void atWarn(String s) {
+        atWarn().with(s).print();
+    }
+
     public static Instance atSevere() {
         return new Instance(Level.SEVERE);
+    }
+
+    public static void atSevere(String s) {
+        atSevere().with(s).print();
     }
 }

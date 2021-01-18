@@ -71,7 +71,7 @@ public class GUI implements InventoryHolder {
     private String title;
 
     @Getter
-    private int size;
+    private final int size;
 
     @Getter @Setter
     private Map<Integer, GUIButton> items;

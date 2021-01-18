@@ -16,10 +16,10 @@ import java.io.IOException;
 public class YamlFile {
 
     @Getter @NonNull
-    private File directory;
+    private final File directory;
 
     @Getter @NonNull
-    private String fileName;
+    private final String fileName;
 
     @Getter
     protected File file;

@@ -8,9 +8,6 @@
     <artifactId>PotterPlusAPI</artifactId>
     <packaging>pom</packaging>
     <version>1.0.2-SNAPSHOT</version>
-    <modules>
-        <module>PotterPlusAPI-Plugin</module>
-    </modules>
 
     <name>PotterPlusAPI</name>
     <description>API powering PotterPlus plugins!</description>

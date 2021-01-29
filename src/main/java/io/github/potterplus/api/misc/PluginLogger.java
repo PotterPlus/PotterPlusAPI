@@ -1,8 +1,5 @@
 package io.github.potterplus.api.misc;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 
 import java.util.logging.Level;
@@ -12,10 +9,16 @@ import java.util.logging.Level;
  */
 public class PluginLogger {
 
-    @NoArgsConstructor @RequiredArgsConstructor
     public static class Instance {
 
-        @NonNull
+        public Instance(Level level) {
+            this.level = level;
+        }
+
+        public Instance() {
+            this(Level.INFO);
+        }
+
         private Level level;
         private String message;
 

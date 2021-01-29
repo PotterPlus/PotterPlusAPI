@@ -9,17 +9,19 @@ import org.bukkit.ChatColor;
  * Represents MC-friendly formats for booleans.
  */
 @RequiredArgsConstructor
-public enum BooleanFormat {
+public enum BooleanFormatter {
 
     TRUE_FALSE("true", "false"),
 
     YES_NO("yes", "no"),
 
+    ENABLE_DISABLE("enable", "disable"),
+
     ENABLED_DISABLED("enabled", "disabled");
 
-    public static String format(boolean bool, BooleanFormat format, boolean capitalized, boolean colored) {
+    public static String format(boolean bool, BooleanFormatter format, boolean capitalized, boolean colored, ChatColor colorTrue, ChatColor colorFalse) {
         String str = bool ? format.trueStr : format.falseStr;
-        ChatColor color = bool ? ChatColor.GREEN : ChatColor.RED;
+        ChatColor color = bool ? colorTrue : colorFalse;
 
         str = capitalized ? StringUtils.capitalize(str) : str;
         str = colored ? color + str : str;
@@ -27,7 +29,11 @@ public enum BooleanFormat {
         return str;
     }
 
-    public static String format(boolean bool, BooleanFormat format) {
+    public static String format(boolean bool, BooleanFormatter format, boolean capitalized, boolean colored) {
+        return format(bool, format, capitalized, colored, ChatColor.GREEN, ChatColor.RED);
+    }
+
+    public static String format(boolean bool, BooleanFormatter format) {
         return format(bool, format, false, true);
     }
 
@@ -35,10 +41,10 @@ public enum BooleanFormat {
     String trueStr, falseStr;
 
     public String format(boolean bool) {
-        return BooleanFormat.format(bool,this);
+        return BooleanFormatter.format(bool,this);
     }
 
     public String format(boolean bool, boolean capitalized, boolean colored) {
-        return BooleanFormat.format(bool, this, capitalized, colored);
+        return BooleanFormatter.format(bool, this, capitalized, colored);
     }
 }

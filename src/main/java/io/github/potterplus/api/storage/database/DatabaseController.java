@@ -2,9 +2,6 @@ package io.github.potterplus.api.storage.database;
 
 import io.github.potterplus.api.misc.PluginLogger;
 import lombok.Getter;
-import lombok.NonNull;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

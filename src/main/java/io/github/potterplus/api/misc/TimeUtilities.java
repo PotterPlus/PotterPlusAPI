@@ -2,7 +2,7 @@ package io.github.potterplus.api.misc;
 
 import java.util.Date;
 
-public class TimeConverter {
+public class TimeUtilities {
 
     public static final String PATTERN = "yyyy-MM-dd HH:mm:ssZ";
 

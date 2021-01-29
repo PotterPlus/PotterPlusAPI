@@ -1,5 +1,6 @@
-package io.github.potterplus.api.misc;
+package io.github.potterplus.api.wrapper;
 
+import io.github.potterplus.api.misc.StringUtilities;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +18,7 @@ public class PPCommandSender {
     }
 
     @NonNull
-    private CommandSender sender;
+    private final CommandSender sender;
 
     public void sendMessage(String message) {
         sender.sendMessage(StringUtilities.color(message));
@@ -26,6 +27,4 @@ public class PPCommandSender {
     public void sendMessages(String... messages) {
         Arrays.stream(messages).map(StringUtilities::color).forEach(sender::sendMessage);
     }
-
-
 }

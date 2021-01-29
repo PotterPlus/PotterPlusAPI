@@ -1,7 +1,8 @@
-package io.github.potterplus.api.misc;
+package io.github.potterplus.api.item;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import io.github.potterplus.api.misc.StringUtilities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;

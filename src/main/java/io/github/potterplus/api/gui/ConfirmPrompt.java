@@ -2,7 +2,7 @@ package io.github.potterplus.api.gui;
 
 import io.github.potterplus.api.gui.button.AutoGUIButton;
 import io.github.potterplus.api.gui.button.GUIButton;
-import io.github.potterplus.api.misc.ItemStackBuilder;
+import io.github.potterplus.api.item.ItemStackBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;

@@ -7,7 +7,7 @@
     <groupId>io.github.potterplus.api</groupId>
     <artifactId>PotterPlusAPI</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <name>PotterPlusAPI</name>
     <description>API powering PotterPlus plugins!</description>

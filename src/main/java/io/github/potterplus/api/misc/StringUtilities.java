@@ -11,12 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static org.bukkit.ChatColor.COLOR_CHAR;
+
 /**
  * Various utility methods for operating on Strings.
  */
 public class StringUtilities {
-
-    public static final char COLOR_CHAR = '&';
 
     /**
      * Translates color and formatting codes.

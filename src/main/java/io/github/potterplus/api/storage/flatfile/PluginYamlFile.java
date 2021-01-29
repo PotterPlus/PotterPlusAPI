@@ -1,4 +1,4 @@
-package io.github.potterplus.api.storage.yaml;
+package io.github.potterplus.api.storage.flatfile;
 
 import io.github.potterplus.api.misc.PluginLogger;
 import org.bukkit.configuration.file.FileConfiguration;

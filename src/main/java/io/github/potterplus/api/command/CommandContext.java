@@ -1,6 +1,6 @@
 package io.github.potterplus.api.command;
 
-import io.github.potterplus.api.misc.StringUtilities;
+import io.github.potterplus.api.string.StringUtilities;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

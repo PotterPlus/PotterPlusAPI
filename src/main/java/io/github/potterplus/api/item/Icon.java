@@ -2,7 +2,7 @@ package io.github.potterplus.api.item;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import io.github.potterplus.api.misc.StringUtilities;
+import io.github.potterplus.api.string.StringUtilities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -24,14 +24,14 @@ import java.util.function.Supplier;
 /**
  * A fluent ItemStack builder-style class for creating, containing, reading, and easily manipulating ItemStacks.
  */
-public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
+public class Icon implements Supplier<ItemStack>, Cloneable {
 
     /**
      * Creates a new ItemStackBuilder.
      * @return The instance.
      */
-    public static ItemStackBuilder builder() {
-        return new ItemStackBuilder();
+    public static Icon builder() {
+        return new Icon();
     }
 
     /**
@@ -39,8 +39,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param itemStack The item.
      * @return The instance.
      */
-    public static ItemStackBuilder of(ItemStack itemStack) {
-        return new ItemStackBuilder(itemStack);
+    public static Icon of(ItemStack itemStack) {
+        return new Icon(itemStack);
     }
 
     /**
@@ -48,8 +48,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param item The item.
      * @return The instance.
      */
-    public static ItemStackBuilder of(Supplier<ItemStack> item) {
-        return ItemStackBuilder.of(item.get());
+    public static Icon of(Supplier<ItemStack> item) {
+        return Icon.of(item.get());
     }
 
     /**
@@ -57,8 +57,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param material The material.
      * @return The instance.
      */
-    public static ItemStackBuilder start(Material material) {
-        return ItemStackBuilder.builder().type(material);
+    public static Icon start(Material material) {
+        return Icon.builder().type(material);
     }
 
     /**
@@ -68,12 +68,12 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore.
      * @return The instance.
      */
-    public static ItemStackBuilder simple(Material material, String name, List<String> lore) {
+    public static Icon simple(Material material, String name, List<String> lore) {
         if (material == null) {
             return null;
         }
 
-        ItemStackBuilder builder = ItemStackBuilder.builder()
+        Icon builder = Icon.builder()
                 .name(name);
 
         if (lore != null) {
@@ -89,8 +89,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param name The display name.
      * @return The instance.
      */
-    public static ItemStackBuilder simple(Material material, String name) {
-        return ItemStackBuilder.simple(material, name, null);
+    public static Icon simple(Material material, String name) {
+        return Icon.simple(material, name, null);
     }
 
     /**
@@ -98,8 +98,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param player The player to use.
      * @return The instance.
      */
-    public static ItemStackBuilder skull(OfflinePlayer player) {
-        return ItemStackBuilder
+    public static Icon skull(OfflinePlayer player) {
+        return Icon
                 .start(Material.PLAYER_HEAD)
                 .owningPlayer(player);
     }
@@ -109,8 +109,8 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param uuid The UUID of the player to use.
      * @return The instance.
      */
-    public static ItemStackBuilder skull(UUID uuid) {
-        return ItemStackBuilder
+    public static Icon skull(UUID uuid) {
+        return Icon
                 .start(Material.PLAYER_HEAD)
                 .owningPlayer(uuid);
     }
@@ -134,7 +134,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param material The Material.
      * @return The instance.
      */
-    public ItemStackBuilder type(Material material) {
+    public Icon type(Material material) {
         this.type = material;
 
         return this;
@@ -145,7 +145,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param material The Material.
      * @return The instance.
      */
-    public ItemStackBuilder material(Material material) {
+    public Icon material(Material material) {
         return this.type(material);
     }
 
@@ -170,7 +170,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param durability The durability.
      * @return The instance.
      */
-    public ItemStackBuilder durability(short durability) {
+    public Icon durability(short durability) {
         this.durability = durability;
 
         return this;
@@ -184,7 +184,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param amount The amount.
      * @return The instance.
      */
-    public ItemStackBuilder amount(int amount) {
+    public Icon amount(int amount) {
         this.amount = amount;
 
         return this;
@@ -194,7 +194,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Sets the item amount to 1.
      * @return The instance.
      */
-    public ItemStackBuilder single() {
+    public Icon single() {
         return this.amount(1);
     }
 
@@ -202,7 +202,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Sets the item amount to the max stack size for the Material.
      * @return The instance.
      */
-    public ItemStackBuilder fullStack() {
+    public Icon fullStack() {
         return this.amount(this.getMaxStackSize());
     }
 
@@ -210,7 +210,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Sets the item amount to half of the max stack size for the Material.
      * @return The instance.
      */
-    public ItemStackBuilder halfStack() {
+    public Icon halfStack() {
         return this.amount(this.getMaxStackSize() / 2);
     }
 
@@ -222,7 +222,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param customModelData The custom model data.
      * @return The instance.
      */
-    public ItemStackBuilder customModelData(int customModelData) {
+    public Icon customModelData(int customModelData) {
         this.customModelData = customModelData;
 
         return this;
@@ -236,7 +236,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param unbreakable Whether or not the item is unbreakable.
      * @return The instance.
      */
-    public ItemStackBuilder unbreakable(boolean unbreakable) {
+    public Icon unbreakable(boolean unbreakable) {
         this.unbreakable = unbreakable;
 
         return this;
@@ -246,7 +246,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Apply the unbreakable status.
      * @return The instance.
      */
-    public ItemStackBuilder unbreakable() {
+    public Icon unbreakable() {
         return this.unbreakable(true);
     }
 
@@ -254,7 +254,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Remove the unbreakable status.
      * @return The instance.
      */
-    public ItemStackBuilder removeUnbreakable() {
+    public Icon removeUnbreakable() {
         return this.unbreakable(false);
     }
 
@@ -262,7 +262,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Toggles the unbreakable status.
      * @return The instance.
      */
-    public ItemStackBuilder toggleUnbreakable() {
+    public Icon toggleUnbreakable() {
         return this.unbreakable(!unbreakable);
     }
 
@@ -274,7 +274,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param flags The flags.
      * @return The instance.
      */
-    public ItemStackBuilder setFlags(Set<ItemFlag> flags) {
+    public Icon setFlags(Set<ItemFlag> flags) {
         this.flags = flags;
 
         return this;
@@ -285,7 +285,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param flags The flags.
      * @return The instance.
      */
-    public ItemStackBuilder flag(ItemFlag... flags) {
+    public Icon flag(ItemFlag... flags) {
         if (flags == null) return this;
 
         this.flags.addAll(Arrays.asList(flags));
@@ -298,7 +298,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param flags The flags to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeFlag(ItemFlag... flags) {
+    public Icon removeFlag(ItemFlag... flags) {
         if (flags == null) return this;
 
         this.flags.removeAll(Arrays.asList(flags));
@@ -310,7 +310,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Clears flags from item.
      * @return The instance.
      */
-    public ItemStackBuilder clearFlags() {
+    public Icon clearFlags() {
         this.flags = new HashSet<>();
 
         return this;
@@ -360,7 +360,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param name The name.
      * @return The instance.
      */
-    public ItemStackBuilder name(String name) {
+    public Icon name(String name) {
         this.name = StringUtilities.color(name);
 
         return this;
@@ -374,7 +374,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore.
      * @return The instance.
      */
-    public ItemStackBuilder lore(String... lore) {
+    public Icon lore(String... lore) {
         this.lore = StringUtilities.color(lore);
 
         return this;
@@ -385,7 +385,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore.
      * @return The instance.
      */
-    public ItemStackBuilder lore(List<String> lore) {
+    public Icon lore(List<String> lore) {
         this.lore = StringUtilities.color(lore);
 
         return this;
@@ -396,7 +396,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore to prepend.
      * @return The instance.
      */
-    public ItemStackBuilder prependLore(List<String> lore) {
+    public Icon prependLore(List<String> lore) {
         List<String> list = new ArrayList<>(lore);
 
         list.addAll(this.lore);
@@ -411,7 +411,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore to prepend.
      * @return The instance.
      */
-    public ItemStackBuilder prependLore(String... lore) {
+    public Icon prependLore(String... lore) {
         return this.prependLore(Arrays.asList(lore));
     }
 
@@ -420,7 +420,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param lore The lore to add.
      * @return The instance.
      */
-    public ItemStackBuilder addLore(String... lore) {
+    public Icon addLore(String... lore) {
         if (this.lore == null) {
             this.lore = new ArrayList<>();
         }
@@ -437,7 +437,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param index The index of the line to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeLore(int index) {
+    public Icon removeLore(int index) {
         this.lore.remove(index);
 
         return this;
@@ -451,7 +451,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param strip Whether or not to strip colors when comparing.
      * @return The instance.
      */
-    public ItemStackBuilder removeLore(String line, boolean strip) {
+    public Icon removeLore(String line, boolean strip) {
         line = strip ? ChatColor.stripColor(line) : line;
 
         for (int i = 0; i < lore.size(); i++) {
@@ -472,7 +472,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param line The line to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeLore(String line) {
+    public Icon removeLore(String line) {
         return removeLore(line, false);
     }
 
@@ -480,7 +480,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Clears the item's lore.
      * @return The instance.
      */
-    public ItemStackBuilder clearLore() {
+    public Icon clearLore() {
         this.lore = new ArrayList<>();
 
         return this;
@@ -494,7 +494,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param attributeModifiers The attribute modifiers.
      * @return The instance.
      */
-    public ItemStackBuilder attributes(Multimap<Attribute, AttributeModifier> attributeModifiers) {
+    public Icon attributes(Multimap<Attribute, AttributeModifier> attributeModifiers) {
         if (attributeModifiers == null) return this;
 
         this.attributeModifiers = attributeModifiers;
@@ -508,7 +508,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param modifier The modifier.
      * @return The instance.
      */
-    public ItemStackBuilder attribute(Attribute attribute, AttributeModifier modifier) {
+    public Icon attribute(Attribute attribute, AttributeModifier modifier) {
         this.attributeModifiers.put(attribute, modifier);
 
         return this;
@@ -519,7 +519,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param attribute The attribute to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeAttribute(Attribute attribute) {
+    public Icon removeAttribute(Attribute attribute) {
         this.attributeModifiers.removeAll(attribute);
 
         return this;
@@ -531,7 +531,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param attributeModifier The attribute modifier to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeAttribute(Attribute attribute, AttributeModifier attributeModifier) {
+    public Icon removeAttribute(Attribute attribute, AttributeModifier attributeModifier) {
         this.attributeModifiers.remove(attribute, attributeModifier);
 
         return this;
@@ -541,7 +541,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Clears the items attribute modifiers.
      * @return The instance.
      */
-    public ItemStackBuilder clearAttributes() {
+    public Icon clearAttributes() {
         this.attributeModifiers = ArrayListMultimap.create();
 
         return this;
@@ -583,7 +583,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param enchants The enchantments.
      * @return The instance.
      */
-    public ItemStackBuilder enchants(List<Enchant> enchants) {
+    public Icon enchants(List<Enchant> enchants) {
         this.enchants = enchants;
 
         return this;
@@ -594,7 +594,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param enchants The enchantments.
      * @return The instance.
      */
-    public ItemStackBuilder enchants(Map<Enchantment, Integer> enchants) {
+    public Icon enchants(Map<Enchantment, Integer> enchants) {
         List<Enchant> list = new ArrayList<>();
 
         for (Map.Entry<Enchantment, Integer> entry : enchants.entrySet()) {
@@ -616,7 +616,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param enchants The Enchants to apply.
      * @return The instance.
      */
-    public ItemStackBuilder enchant(Enchant... enchants) {
+    public Icon enchant(Enchant... enchants) {
         this.enchants.addAll(Arrays.asList(enchants));
 
         return this;
@@ -629,7 +629,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param ignoreLevel Whether or not to ignore level restrictions.
      * @return The instance.
      */
-    public ItemStackBuilder enchant(Enchantment enchantment, int level, boolean ignoreLevel) {
+    public Icon enchant(Enchantment enchantment, int level, boolean ignoreLevel) {
         this.enchants.add(
                 Enchant.builder()
                         .type(enchantment)
@@ -646,7 +646,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param enchantments The enchantments.
      * @return The instance.
      */
-    public ItemStackBuilder enchant(Enchantment... enchantments) {
+    public Icon enchant(Enchantment... enchantments) {
         for (Enchantment e : enchantments) {
             this.enchant(
                     Enchant.builder()
@@ -665,7 +665,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param level The level.
      * @return The instance.
      */
-    public ItemStackBuilder enchant(Enchantment enchantment, int level) {
+    public Icon enchant(Enchantment enchantment, int level) {
         return this.enchant(enchantment, level, false);
     }
 
@@ -674,7 +674,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param enchantments The enchantments to remove.
      * @return The instance.
      */
-    public ItemStackBuilder removeEnchant(Enchantment... enchantments) {
+    public Icon removeEnchant(Enchantment... enchantments) {
         List<Enchant> list = new ArrayList<>(this.enchants);
 
         for (Enchant e : this.enchants) {
@@ -692,7 +692,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * Clears all enchantments from the item.
      * @return The instance.
      */
-    public ItemStackBuilder clearEnchants() {
+    public Icon clearEnchants() {
         this.enchants = new ArrayList<>();
 
         return this;
@@ -736,7 +736,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param uuid The UUID of the player to use.
      * @return The instance.
      */
-    public ItemStackBuilder owningPlayer(UUID uuid) {
+    public Icon owningPlayer(UUID uuid) {
         this.owningPlayer = uuid;
 
         return this;
@@ -747,7 +747,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param player The player to use.
      * @return The instance.
      */
-    public ItemStackBuilder owningPlayer(OfflinePlayer player) {
+    public Icon owningPlayer(OfflinePlayer player) {
         this.owningPlayer = player.getUniqueId();
 
         return this;
@@ -761,13 +761,13 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
      * @param color The color.
      * @return The instance.
      */
-    public ItemStackBuilder color(Color color) {
+    public Icon color(Color color) {
         this.color = color;
 
         return this;
     }
 
-    public ItemStackBuilder() {
+    public Icon() {
         this.type = Material.DIRT;
         this.amount = 1;
         this.flags = new HashSet<>();
@@ -776,7 +776,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
         this.enchants = new ArrayList<>();
     }
 
-    public ItemStackBuilder(ItemStack itemStack) {
+    public Icon(ItemStack itemStack) {
         this.type = itemStack.getType();
         this.amount = itemStack.getAmount();
 
@@ -825,7 +825,7 @@ public class ItemStackBuilder implements Supplier<ItemStack>, Cloneable {
         }
     }
 
-    public ItemStackBuilder(Supplier<ItemStack> item) {
+    public Icon(Supplier<ItemStack> item) {
         this(item.get());
     }
 

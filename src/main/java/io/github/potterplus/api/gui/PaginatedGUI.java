@@ -2,8 +2,8 @@ package io.github.potterplus.api.gui;
 
 import io.github.potterplus.api.gui.button.AutoGUIButton;
 import io.github.potterplus.api.gui.button.GUIButton;
-import io.github.potterplus.api.item.ItemStackBuilder;
-import io.github.potterplus.api.misc.StringUtilities;
+import io.github.potterplus.api.item.Icon;
+import io.github.potterplus.api.string.StringUtilities;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -111,9 +111,9 @@ public class PaginatedGUI extends GUI {
         this.setItems(new HashMap<>());
     }
 
-    public ItemStackBuilder createNavigation(int currentPage, int maxPage, boolean controls) {
+    public Icon createNavigation(int currentPage, int maxPage, boolean controls) {
         Map<String, String> replace = StringUtilities.replaceMap("$currentPage", String.valueOf(currentPage), "$maxPage", String.valueOf(maxPage));
-        ItemStackBuilder is = ItemStackBuilder
+        Icon is = Icon
                 .start(Material.NAME_TAG)
                 .name(StringUtilities.replace(settings.getPageNavNameFormat(), replace));
 
@@ -184,7 +184,7 @@ public class PaginatedGUI extends GUI {
         }
 
         if (inventory.getItem(44) == null && getCurrentPage() == 0) {
-            ItemStackBuilder pageNav = this.createNavigation(1, 1, false);
+            Icon pageNav = this.createNavigation(1, 1, false);
 
             inventory.setItem(49, pageNav.build());
 

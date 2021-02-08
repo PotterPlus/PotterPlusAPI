@@ -2,7 +2,7 @@ package io.github.potterplus.api.gui;
 
 import io.github.potterplus.api.gui.button.AutoGUIButton;
 import io.github.potterplus.api.gui.button.GUIButton;
-import io.github.potterplus.api.item.ItemStackBuilder;
+import io.github.potterplus.api.item.Icon;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
@@ -91,15 +91,15 @@ public abstract class ConfirmPrompt extends GUI {
 
     @Override
     public Inventory getInventory() {
-        ItemStackBuilder confirmItem = ItemStackBuilder
+        Icon confirmItem = Icon
                 .start(getConfirmMaterial())
                 .name(getConfirmName())
                 .lore(getConfirmLore());
-        ItemStackBuilder cancelItem = ItemStackBuilder
+        Icon cancelItem = Icon
                 .start(getCancelMaterial())
                 .name(getCancelName())
                 .lore(getCancelLore());
-        ItemStackBuilder infoItem = ItemStackBuilder
+        Icon infoItem = Icon
                 .start(getInfoMaterial())
                 .name(getInfoName())
                 .lore(getInfoLore());

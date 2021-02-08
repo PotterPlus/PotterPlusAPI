@@ -1,6 +1,6 @@
 package io.github.potterplus.api.wrapper;
 
-import io.github.potterplus.api.misc.StringUtilities;
+import io.github.potterplus.api.string.StringUtilities;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;

@@ -1,4 +1,4 @@
-package io.github.potterplus.api.misc;
+package io.github.potterplus.api.string;
 
 import com.google.common.collect.ImmutableMap;
 import org.bukkit.ChatColor;

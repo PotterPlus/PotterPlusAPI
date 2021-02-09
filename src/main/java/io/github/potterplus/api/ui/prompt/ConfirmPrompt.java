@@ -1,7 +1,8 @@
-package io.github.potterplus.api.gui;
+package io.github.potterplus.api.ui.prompt;
 
-import io.github.potterplus.api.gui.button.AutoGUIButton;
-import io.github.potterplus.api.gui.button.GUIButton;
+import io.github.potterplus.api.ui.UserInterface;
+import io.github.potterplus.api.ui.button.AutoUIButton;
+import io.github.potterplus.api.ui.button.UIButton;
 import io.github.potterplus.api.item.Icon;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,7 @@ import java.util.function.Supplier;
 /**
  * TODO Write docs
  */
-public abstract class ConfirmPrompt extends GUI {
+public abstract class ConfirmPrompt extends UserInterface {
 
     @Getter @Setter
     private Material infoMaterial, confirmMaterial, cancelMaterial;
@@ -104,8 +105,8 @@ public abstract class ConfirmPrompt extends GUI {
                 .name(getInfoName())
                 .lore(getInfoLore());
 
-        GUIButton confirmButton = new GUIButton(confirmItem);
-        GUIButton cancelButton = new GUIButton(cancelItem);
+        UIButton confirmButton = new UIButton(confirmItem);
+        UIButton cancelButton = new UIButton(cancelItem);
 
         confirmButton.setListener(event -> {
             event.setCancelled(true);
@@ -141,7 +142,7 @@ public abstract class ConfirmPrompt extends GUI {
             }
         });
 
-        AutoGUIButton infoButton = new AutoGUIButton(infoItem);
+        AutoUIButton infoButton = new AutoUIButton(infoItem);
 
         this.setButton(0, confirmButton);
         this.setButton(1, confirmButton);

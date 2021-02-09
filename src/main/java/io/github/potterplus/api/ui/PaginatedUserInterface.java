@@ -1,7 +1,7 @@
-package io.github.potterplus.api.gui;
+package io.github.potterplus.api.ui;
 
-import io.github.potterplus.api.gui.button.AutoGUIButton;
-import io.github.potterplus.api.gui.button.GUIButton;
+import io.github.potterplus.api.ui.button.AutoUIButton;
+import io.github.potterplus.api.ui.button.UIButton;
 import io.github.potterplus.api.item.Icon;
 import io.github.potterplus.api.string.StringUtilities;
 import lombok.Getter;
@@ -12,47 +12,29 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.*;
 
+import static io.github.potterplus.api.string.StringUtilities.replace;
+import static io.github.potterplus.api.string.StringUtilities.replaceMap;
+
 /**
  * An extension of a basic GUI which allows for items to be paginated across as many pages as necessary along with a persistent toolbar.
  */
-public class PaginatedGUI extends GUI {
-
-    public static class PaginatedGUISettings {
-
-        @Setter
-        private String pageNavNameFormat = "&7Page &e$currentPage&8/&e$maxPage";
-
-        @Setter
-        private List<String> pageNavLoreFormat = Arrays.asList("&8> &6Left-click &7to go to the previous page", "&8> &6Right-click &7to go to the next page");
-
-        public String getPageNavNameFormat() {
-            return StringUtilities.color(pageNavNameFormat);
-        }
-
-        public List<String> getPageNavLoreFormat() {
-            return StringUtilities.color(pageNavLoreFormat);
-        }
-    }
+public class PaginatedUserInterface extends UserInterface {
 
     @Getter @Setter
-    private Map<Integer, GUIButton> toolbarItems;
+    private Map<Integer, UIButton> toolbarItems;
 
     @Getter
     private int currentPage;
 
-    @Getter
-    private final PaginatedGUISettings settings;
-
-    public PaginatedGUI(String name) {
+    public PaginatedUserInterface(String name) {
         super(name, 54);
 
         this.toolbarItems = new HashMap<>();
         this.currentPage = 0;
-        this.settings = new PaginatedGUISettings();
     }
 
     @Override
-    public GUIButton getButton(int slot) {
+    public UIButton getButton(int slot) {
         if (slot < 45) {
             return getItems().get(slot);
         } else {
@@ -60,7 +42,7 @@ public class PaginatedGUI extends GUI {
         }
     }
 
-    public void setToolbarItem(int slot, GUIButton button) {
+    public void setToolbarItem(int slot, UIButton button) {
         if (slot < 0 || slot > 8) {
             throw new IllegalArgumentException("Slot must be between 0-8.");
         }
@@ -112,16 +94,16 @@ public class PaginatedGUI extends GUI {
     }
 
     public Icon createNavigation(int currentPage, int maxPage, boolean controls) {
-        Map<String, String> replace = StringUtilities.replaceMap("$currentPage", String.valueOf(currentPage), "$maxPage", String.valueOf(maxPage));
-        Icon is = Icon
+        Map<String, String> replace = replaceMap("$currentPage", String.valueOf(currentPage), "$maxPage", String.valueOf(maxPage));
+        Icon pageNav = Icon
                 .start(Material.NAME_TAG)
-                .name(StringUtilities.replace(settings.getPageNavNameFormat(), replace));
+                .name(replace("&7Page &e$currentPage&8/&e$maxPage", replace));
 
         if (controls) {
-            is.lore(StringUtilities.replace(settings.getPageNavLoreFormat(), replace));
+            pageNav.lore(replace(Arrays.asList("&8> &6Left-click &7to go to the previous page", "&8> &6Right-click &7to go to the next page"), replace));
         }
 
-        return is;
+        return pageNav;
     }
 
     public void clearToolbar() {
@@ -132,12 +114,12 @@ public class PaginatedGUI extends GUI {
     public Inventory getInventory() {
         Inventory inventory = Bukkit.createInventory(this, getSize(), getTitle());
 
-        GUIButton nav = new GUIButton(this.createNavigation(getCurrentPage() + 1, getMaxPage() + 1, true));
+        UIButton nav = new UIButton(this.createNavigation(getCurrentPage() + 1, getMaxPage() + 1, true));
 
         nav.setListener(event -> {
             event.setCancelled(true);
 
-            PaginatedGUI menu = (PaginatedGUI) event.getInventory().getHolder();
+            PaginatedUserInterface menu = (PaginatedUserInterface) event.getInventory().getHolder();
 
             switch (event.getClick()) {
                 case LEFT:
@@ -188,7 +170,7 @@ public class PaginatedGUI extends GUI {
 
             inventory.setItem(49, pageNav.build());
 
-            setToolbarItem(4, new AutoGUIButton(pageNav));
+            setToolbarItem(4, new AutoUIButton(pageNav));
         }
 
         return inventory;

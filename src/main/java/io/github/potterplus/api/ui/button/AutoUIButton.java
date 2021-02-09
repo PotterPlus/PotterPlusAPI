@@ -1,4 +1,4 @@
-package io.github.potterplus.api.gui.button;
+package io.github.potterplus.api.ui.button;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -7,15 +7,15 @@ import java.util.function.Supplier;
 /**
  * A simple automatically canceled GUI button.
  */
-public class AutoGUIButton extends GUIButton {
+public class AutoUIButton extends UIButton {
 
-    public AutoGUIButton(ItemStack item) {
+    public AutoUIButton(ItemStack item) {
         super(item);
 
         this.setListener(event -> event.setCancelled(true));
     }
 
-    public AutoGUIButton(Supplier<ItemStack> item) {
+    public AutoUIButton(Supplier<ItemStack> item) {
         this(item.get());
     }
 }

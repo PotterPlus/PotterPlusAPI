@@ -1,4 +1,4 @@
-package io.github.potterplus.api.gui.button;
+package io.github.potterplus.api.ui.button;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -12,7 +12,7 @@ import java.util.function.Supplier;
  * Represents a button on a GUI i.e. the container for the item and its subsequent event handling for button clicks.
  */
 @RequiredArgsConstructor
-public class GUIButton {
+public class UIButton {
 
     @Getter @Setter @NonNull
     private ItemStack item;
@@ -20,7 +20,7 @@ public class GUIButton {
     @Getter @Setter
     private ButtonListener listener;
 
-    public GUIButton(Supplier<ItemStack> item) {
+    public UIButton(Supplier<ItemStack> item) {
         this(item.get());
     }
 }

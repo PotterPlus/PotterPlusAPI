@@ -7,7 +7,7 @@
     <groupId>io.github.potterplus.api</groupId>
     <artifactId>PotterPlusAPI</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
 
     <name>PotterPlusAPI</name>
     <description>API powering PotterPlus plugins!</description>
@@ -69,6 +69,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ocpsoft.prettytime</groupId>
+            <artifactId>prettytime</artifactId>
+            <version>5.0.0.Final</version>
         </dependency>
     </dependencies>
 

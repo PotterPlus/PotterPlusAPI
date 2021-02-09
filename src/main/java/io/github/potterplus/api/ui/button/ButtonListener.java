@@ -1,4 +1,4 @@
-package io.github.potterplus.api.gui.button;
+package io.github.potterplus.api.ui.button;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 

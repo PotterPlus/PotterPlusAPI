@@ -1,6 +1,5 @@
 package io.github.potterplus.api.string;
 
-import io.github.potterplus.api.wrapper.PPCommandSender;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

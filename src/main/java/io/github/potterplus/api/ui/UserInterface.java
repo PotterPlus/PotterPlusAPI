@@ -1,6 +1,7 @@
-package io.github.potterplus.api.gui;
+package io.github.potterplus.api.ui;
 
-import io.github.potterplus.api.gui.button.GUIButton;
+import io.github.potterplus.api.ui.button.UIButton;
+import io.github.potterplus.api.ui.prompt.ConfirmPrompt;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -18,25 +19,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A basic custom inventory setup.
+ * A basic custom inventory user interface setup.
  */
-public class GUI implements InventoryHolder {
+public class UserInterface implements InventoryHolder {
 
     // TODO Document
 
     /**
      * Listens for GUIs to handle logic appropriately.
      */
-    private static class GUIListener implements Listener {
+    private static class UserInterfaceListener implements Listener {
 
         @EventHandler
         public void onInventoryClick(InventoryClickEvent event) {
             InventoryHolder holder = event.getInventory().getHolder();
 
             if (holder != null) {
-                if (holder instanceof GUI) {
-                    GUI gui = (GUI) holder;
-                    GUIButton button = gui.getButton(event.getSlot());
+                if (holder instanceof UserInterface) {
+                    UserInterface gui = (UserInterface) holder;
+                    UIButton button = gui.getButton(event.getSlot());
 
                     if (button != null && button.getListener() != null) {
                         button.getListener().onClick(event);
@@ -50,12 +51,12 @@ public class GUI implements InventoryHolder {
             InventoryHolder holder = event.getInventory().getHolder();
 
             if (holder != null) {
-                if (holder instanceof GUI) {
+                if (holder instanceof UserInterface) {
                     if (holder instanceof ConfirmPrompt && ((ConfirmPrompt) holder).isSafelyClosed()) {
                         return;
                     }
 
-                    GUI gui = (GUI) holder;
+                    UserInterface gui = (UserInterface) holder;
 
                     gui.onClose(event);
                 }
@@ -64,33 +65,42 @@ public class GUI implements InventoryHolder {
     }
 
     public static void prepare(JavaPlugin plugin) {
-        plugin.getServer().getPluginManager().registerEvents(new GUIListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new UserInterfaceListener(), plugin);
+        plugin.getLogger().info("Registered event listeners for plugin user interfaces");
     }
 
     @Getter
     private String title;
 
     @Getter
-    private final int size;
+    private int size;
 
     @Getter @Setter
-    private Map<Integer, GUIButton> items;
+    private Map<Integer, UIButton> items;
 
     public void setTitle(String title) {
         this.title = ChatColor.translateAlternateColorCodes('&', title);
     }
 
-    public GUI(String title, int size) {
+    public void setSize(int size) {
+        if (size != 9 && size != 18 && size != 27 && size != 36 && size != 45 && size != 54) {
+            throw new IllegalArgumentException("Cannot set user interface size for illegal slots " + size + ". Use a multiple of 9 up to 54.");
+        }
+
+        this.size = size;
+    }
+
+    public UserInterface(String title, int size) {
         this.title = ChatColor.translateAlternateColorCodes('&', title);
         this.size = size;
         this.items = new HashMap<>();
     }
 
-    public GUI(String name) {
+    public UserInterface(String name) {
         this(name, 9);
     }
 
-    public void addButton(GUIButton button) {
+    public void addButton(UIButton button) {
         int slot = 0;
 
         if (!items.isEmpty()) {
@@ -108,7 +118,7 @@ public class GUI implements InventoryHolder {
         items.put(slot, button);
     }
 
-    public void setButton(int slot, GUIButton button) {
+    public void setButton(int slot, UIButton button) {
         items.put(slot, button);
     }
 
@@ -120,7 +130,7 @@ public class GUI implements InventoryHolder {
         this.items.clear();
     }
 
-    public GUIButton getButton(int slot) {
+    public UIButton getButton(int slot) {
         if (slot < getSize()) {
             return items.get(slot);
         }
@@ -141,9 +151,9 @@ public class GUI implements InventoryHolder {
         Inventory inventory = Bukkit.createInventory(this, getSize(), getTitle());
 
         if (items != null && !items.isEmpty()) {
-            for (Map.Entry<Integer, GUIButton> entry : getItems().entrySet()) {
+            for (Map.Entry<Integer, UIButton> entry : getItems().entrySet()) {
                 Integer slot = entry.getKey();
-                GUIButton button = entry.getValue();
+                UIButton button = entry.getValue();
 
                 if (slot == null || button == null) continue;
 

@@ -230,6 +230,15 @@ public class CommandContext {
     }
 
     /**
+     * Dispatches a command to console, replacing everything in the map.
+     * @param command The command format to replace and dispatch.
+     * @param replace The replacements to use.
+     */
+    public void dispatchCommand(String command, Map<String, String> replace) {
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), StringUtilities.replace(command, replace));
+    }
+
+    /**
      * Checks if the supplied flag was used in the current context.
      * @param flag The flag to check for.
      * @return Whether or not the flag was present in the current context.

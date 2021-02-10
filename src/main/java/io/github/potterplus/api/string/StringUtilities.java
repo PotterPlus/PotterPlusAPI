@@ -1,6 +1,5 @@
 package io.github.potterplus.api.string;
 
-import com.google.common.collect.ImmutableMap;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -49,6 +48,18 @@ public class StringUtilities {
         }
 
         return matcher.appendTail(buffer).toString();
+    }
+
+    /**
+     * Removes magic formatting codes from a String.
+     * @param s The String to clean.
+     * @return
+     */
+    public static String removeMagic(String s) {
+        s = s.replace("&k", "");
+        s = s.replace(ChatColor.COLOR_CHAR + "k", "");
+
+        return s;
     }
 
     /**
@@ -122,26 +133,6 @@ public class StringUtilities {
         return newList;
     }
 
-    public static ImmutableMap<String, String> replaceMap(String k1, String v1) {
-        return ImmutableMap.of(k1, v1);
-    }
-
-    public static Map<String, String> replaceMap(String k1, String v1, String k2, String v2) {
-        return ImmutableMap.of(k1, v1, k2, v2);
-    }
-
-    public static Map<String, String> replaceMap(String k1, String v1, String k2, String v2, String k3, String v3) {
-        return ImmutableMap.of(k1, v1, k2, v2, k3, v3);
-    }
-
-    public static Map<String, String> replaceMap(String k1, String v1, String k2, String v2, String k3, String v3, String k4, String v4) {
-        return ImmutableMap.of(k1, v1, k2, v2, k3, v3, k4, v4);
-    }
-
-    public static Map<String, String> replaceMap(String k1, String v1, String k2, String v2, String k3, String v3, String k4, String v4, String k5, String v5) {
-        return ImmutableMap.of(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5);
-    }
-
     /**
      * Checks if the first argument equals any of the subsequent arguments while ignoring String case.
      * @param str The String to compare.
@@ -156,12 +147,18 @@ public class StringUtilities {
         return false;
     }
 
-    public static Boolean parseBoolean(String str) {
-        if (!equalsAny(str, "true", "false", "enable", "disable", "yes", "no")) return null;
+    public static String getPrettyEnumName(String enumName) {
+        enumName = enumName.toLowerCase();
+        enumName = enumName.replace("_", " ");
+        String[] split = enumName.split(" ");
+        StringBuilder newStr = new StringBuilder();
 
-        if (equalsAny(str, "true", "enable", "yes")) return true;
-        if (equalsAny(str, "false", "disable", "no")) return false;
+        for (String s : split) {
+            newStr.append(String.valueOf(s.charAt(0)).toUpperCase())
+                    .append(s.substring(1, s.length()))
+                    .append(" ");
+        }
 
-        return null;
+        return newStr.toString();
     }
 }

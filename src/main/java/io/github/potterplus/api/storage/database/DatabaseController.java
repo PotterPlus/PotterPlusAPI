@@ -1,11 +1,12 @@
 package io.github.potterplus.api.storage.database;
 
-import io.github.potterplus.api.misc.PluginLogger;
 import lombok.Getter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import static io.github.potterplus.api.misc.PluginLogger.*;
 
 public class DatabaseController {
 
@@ -38,16 +39,14 @@ public class DatabaseController {
     }
 
     public void connect() {
-        PluginLogger.atInfo("Attempting to establish connection with MySQL database...");
-
         try {
             openConnection();
 
             if (this.connection != null) {
-                PluginLogger.atInfo("Successfully connected with MySQL database.");
+                atInfo("Connected to database.");
             }
         } catch (Exception e) {
-            PluginLogger.atSevere("Failed to establish connection with MySQL database.");
+            atSevere("Failed to connect to database.");
             e.printStackTrace();
         }
     }
@@ -56,10 +55,10 @@ public class DatabaseController {
         try {
             if (!this.connection.isClosed()) {
                 this.connection.close();
-                PluginLogger.atInfo("Successfully disconnected from MySQL database.");
+                atInfo("Disconnected from database.");
             }
         } catch (Exception e) {
-            PluginLogger.atWarn("Failed to disconnect from MySQL database.");
+            atWarn("Failed to disconnect from database.");
             e.printStackTrace();
         }
     }

@@ -1,19 +1,21 @@
 package io.github.potterplus.api.ui;
 
+import com.google.common.collect.ImmutableMap;
+import io.github.potterplus.api.item.Icon;
 import io.github.potterplus.api.ui.button.AutoUIButton;
 import io.github.potterplus.api.ui.button.UIButton;
-import io.github.potterplus.api.item.Icon;
-import io.github.potterplus.api.string.StringUtilities;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.github.potterplus.api.string.StringUtilities.replace;
-import static io.github.potterplus.api.string.StringUtilities.replaceMap;
 
 /**
  * An extension of a basic GUI which allows for items to be paginated across as many pages as necessary along with a persistent toolbar.
@@ -94,7 +96,7 @@ public class PaginatedUserInterface extends UserInterface {
     }
 
     public Icon createNavigation(int currentPage, int maxPage, boolean controls) {
-        Map<String, String> replace = replaceMap("$currentPage", String.valueOf(currentPage), "$maxPage", String.valueOf(maxPage));
+        Map<String, String> replace = ImmutableMap.of("$currentPage", String.valueOf(currentPage), "$maxPage", String.valueOf(maxPage));
         Icon pageNav = Icon
                 .start(Material.NAME_TAG)
                 .name(replace("&7Page &e$currentPage&8/&e$maxPage", replace));

@@ -73,6 +73,10 @@ public class CommandContext {
         return sender instanceof ConsoleCommandSender;
     }
 
+    /**
+     * Gets the Bukkit ConsoleCommandSender.
+     * @return Bukkit's console sender.
+     */
     public ConsoleCommandSender getConsole() {
         return Bukkit.getConsoleSender();
     }
@@ -215,6 +219,11 @@ public class CommandContext {
         }
     }
 
+    /**
+     * Performs the command as the CommandSender would, replacing everything in the map.
+     * @param command The command format to replace, execute and perform.
+     * @param replace The replacements to use.
+     */
     public void performCommand(String command, Map<String, String> replace) {
         performCommand(StringUtilities.replace(command, replace));
     }
@@ -224,20 +233,25 @@ public class CommandContext {
      * @param flag The flag to check for.
      * @return Whether or not the flag was present in the current context.
      */
-    public boolean hasFlag(String flag) {
+    public boolean hasFlag(CommandFlag flag) {
         if (getArgs() == null || getArgs().length <= 0) return false;
 
-        if (!flag.startsWith("--")) {
-            flag = "--" + flag;
-        }
+        String longFlag = flag.getFullLongFlag();
+        String shortFlag = flag.getFullShortFlag();
 
-        for (String str : getArgs()) {
-            if (StringUtils.containsIgnoreCase(str, flag)) return true;
+        for (String arg : getArgs()) {
+            if (StringUtils.containsIgnoreCase(arg, longFlag) || StringUtils.containsIgnoreCase(arg, shortFlag)) {
+                return true;
+            }
         }
 
         return false;
     }
 
+    /**
+     * Delegates the command logic to a SubCommand.
+     * @param sub The SubCommand to delegate to.
+     */
     public void delegate(CommandBase.SubCommand sub) {
         sub.execute(this);
     }

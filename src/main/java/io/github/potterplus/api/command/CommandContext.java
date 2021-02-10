@@ -60,6 +60,7 @@ public class CommandContext {
         return sender instanceof Player;
     }
 
+    /**
     public Player getPlayer() {
         if (isPlayer()) return (Player) getSender();
         else return null;

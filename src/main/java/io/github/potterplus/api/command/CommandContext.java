@@ -61,6 +61,9 @@ public class CommandContext {
     }
 
     /**
+     * Gets the context sender as a player.
+     * @return The CommandSender as a Player.
+     */
     public Player getPlayer() {
         if (isPlayer()) return (Player) getSender();
         else return null;

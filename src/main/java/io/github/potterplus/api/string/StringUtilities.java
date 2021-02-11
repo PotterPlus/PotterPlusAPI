@@ -160,7 +160,7 @@ public class StringUtilities {
 
         for (String s : split) {
             newStr.append(String.valueOf(s.charAt(0)).toUpperCase())
-                    .append(s.substring(1, s.length()))
+                    .append(s.substring(1))
                     .append(" ");
         }
 

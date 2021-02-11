@@ -53,7 +53,7 @@ public class StringUtilities {
     /**
      * Removes magic formatting codes from a String.
      * @param s The String to clean.
-     * @return
+     * @return The magic-free String.
      */
     public static String removeMagic(String s) {
         s = s.replace("&k", "");
@@ -147,6 +147,11 @@ public class StringUtilities {
         return false;
     }
 
+    /**
+     * Formats enum names to be pretty.
+     * @param enumName The enum name to format.
+     * @return The formatted enum name.
+     */
     public static String getPrettyEnumName(String enumName) {
         enumName = enumName.toLowerCase();
         enumName = enumName.replace("_", " ");

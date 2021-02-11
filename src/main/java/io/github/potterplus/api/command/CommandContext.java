@@ -212,6 +212,24 @@ public class CommandContext {
     }
 
     /**
+     * Sends a formatted and replaced message.
+     * @param format The format to use.
+     * @param replace What to replace.
+     */
+    public void sendMessage(String format, Map<String, String> replace) {
+        sendMessage(StringUtilities.replace(format, replace));
+    }
+
+    /**
+     * Sends a formatted and replaced multi-line message.
+     * @param messages The message format to use.
+     * @param replace What to replace.
+     */
+    public void sendMessage(List<String> messages, Map<String, String> replace) {
+        sendMessage(StringUtilities.replace(messages, replace));
+    }
+
+    /**
      * Executes the command from console if this context's command sender was console. Otherwise, if the sender was a player they will perform the command.
      * @param command The command to execute/perform.
      */

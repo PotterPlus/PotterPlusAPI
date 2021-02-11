@@ -5,6 +5,9 @@ import lombok.NonNull;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -65,6 +68,16 @@ public class HoverMessage {
         return this;
     }
 
+    public void send(CommandSender sender) {
+        if (sender instanceof Player) {
+            send((Player) sender);
+        } else if (sender instanceof ConsoleCommandSender) {
+            sendUnfolded(sender);
+        } else {
+            Bukkit.getLogger().severe("Cannot send HoverMessage to type other than Player or Console!");
+        }
+    }
+
     public void send(Player to) {
         for (String m : message) {
             m = StringUtilities.color(m);
@@ -104,7 +117,7 @@ public class HoverMessage {
         return list;
     }
 
-    public void sendUnfolded(Player to) {
+    public void sendUnfolded(CommandSender to) {
         getUnfolded().forEach(to::sendMessage);
     }
 }

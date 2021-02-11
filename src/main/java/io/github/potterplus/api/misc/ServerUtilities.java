@@ -2,7 +2,6 @@ package io.github.potterplus.api.misc;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 
 import java.util.Optional;
 

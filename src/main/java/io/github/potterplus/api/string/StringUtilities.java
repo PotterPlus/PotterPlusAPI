@@ -166,4 +166,43 @@ public class StringUtilities {
 
         return newStr.toString();
     }
+
+    /**
+     * Checks if a String is contained in quotes. "" or ''
+     * @param s The String to check.
+     * @return Whether or not the String is in quotes.
+     */
+    public static boolean isQuoted(String s) {
+        return (s.startsWith("'") && s.endsWith("'")) || (s.startsWith("\"") && s.endsWith("\""));
+    }
+
+    /**
+     * Adds double quotes around the String. ""
+     * @param s The String to quote.
+     * @return The quoted String.
+     */
+    public static String doubleQuote(String s) {
+        return String.format("\"%s\"", s);
+    }
+
+    /**
+     * Adds single quotes around the String. ''
+     * @param s The String to quote.
+     * @return The quoted String.
+     */
+    public static String singleQuote(String s) {
+        return String.format("'%s'", s);
+    }
+
+    /**
+     * Removes double or single quotes from the String. "" or ''
+     * @param s The String to unquote.
+     * @return The unquoted String.
+     */
+    public static String unquote(String s) {
+        if (isQuoted(s))
+            s = s.substring(1, s.length() - 1);
+
+        return s;
+    }
 }

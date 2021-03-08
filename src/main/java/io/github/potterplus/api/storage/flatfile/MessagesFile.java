@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.List;
 import java.util.Map;
 
 public class MessagesFile<T extends JavaPlugin> extends PluginYamlFile<T> {
@@ -49,12 +50,24 @@ public class MessagesFile<T extends JavaPlugin> extends PluginYamlFile<T> {
         return str;
     }
 
-    public String getMessage(String key) {
-        return StringUtilities.color(getRawMessage(key));
+    public List<String> getMessageBlock(String node) {
+        return StringUtilities.color(getFileConfiguration().getStringList(node));
     }
 
-    public String getStrippedMessage(String key) {
-        return ChatColor.stripColor(getMessage(key));
+    public String getMessage(String node) {
+        return StringUtilities.color(getRawMessage(node));
+    }
+
+    public String getStrippedMessage(String node) {
+        return ChatColor.stripColor(getMessage(node));
+    }
+
+    public void sendMessageBlock(CommandSender to, String node) {
+        getMessageBlock(node).forEach(to::sendMessage);
+    }
+
+    public void sendMessageBlock(CommandSender to, String node, Map<String, String> replace) {
+        getMessageBlock(node).stream().map(s -> StringUtilities.replace(s, replace)).forEach(to::sendMessage);
     }
 
     public void sendMessage(CommandSender to, String node) {

@@ -1,6 +1,9 @@
 package io.github.potterplus.api.storage.database;
 
+import io.github.potterplus.api.storage.flatfile.DatabaseFile;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,25 +11,18 @@ import java.sql.SQLException;
 
 import static io.github.potterplus.api.misc.PluginLogger.*;
 
+@RequiredArgsConstructor
 public class DatabaseController {
+
+    @NonNull
+    private final String host, db, user, pass;
+
+    public DatabaseController(DatabaseFile<?> dbFile) {
+        this(dbFile.getHost(), dbFile.getDatabase(), dbFile.getUsername(), dbFile.getPassword());
+    }
 
     @Getter
     private Connection connection;
-
-    private final String host;
-
-    private final String db;
-
-    private final String user;
-
-    private final String pass;
-
-    public DatabaseController(String host, String db, String user, String pass) {
-        this.host = host;
-        this.db = db;
-        this.user = user;
-        this.pass = pass;
-    }
 
     private void openConnection() throws SQLException, ClassNotFoundException {
         if (this.connection != null && !this.connection.isClosed()) {

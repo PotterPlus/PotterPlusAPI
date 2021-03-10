@@ -7,7 +7,7 @@
     <groupId>io.github.potterplus.api</groupId>
     <artifactId>PotterPlusAPI</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.8-SNAPSHOT</version>
 
     <name>PotterPlusAPI</name>
     <description>API powering PotterPlus plugins!</description>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.elmakers.mine.bukkit</groupId>
             <artifactId>MagicAPI</artifactId>
-            <version>8.2</version>
+            <version>8.4</version>
         </dependency>
 
         <dependency>

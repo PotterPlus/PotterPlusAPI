@@ -182,7 +182,7 @@ public class StringUtilities {
      * @return The quoted String.
      */
     public static String doubleQuote(String s) {
-        return String.format("\"%s\"", s);
+        return color(String.format("&f\"%s&f\"", s));
     }
 
     /**
@@ -191,7 +191,7 @@ public class StringUtilities {
      * @return The quoted String.
      */
     public static String singleQuote(String s) {
-        return String.format("'%s'", s);
+        return color(String.format("&f'%s&f'", s));
     }
 
     /**

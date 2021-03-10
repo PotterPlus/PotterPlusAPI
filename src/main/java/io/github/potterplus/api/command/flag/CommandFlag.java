@@ -1,4 +1,4 @@
-package io.github.potterplus.api.command;
+package io.github.potterplus.api.command.flag;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -18,10 +18,4 @@ public class CommandFlag {
         return String.format("-%s", getShortFlag());
     }
 
-    public static final class UserInterfaceFlag extends CommandFlag {
-
-        public UserInterfaceFlag() {
-            super("ui", "u");
-        }
-    }
 }

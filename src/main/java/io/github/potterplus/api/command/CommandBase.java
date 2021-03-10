@@ -13,11 +13,6 @@ import java.util.List;
  */
 public abstract class CommandBase<T extends JavaPlugin> implements CommandExecutor, TabCompleter {
 
-    public static abstract class SubCommand {
-
-        public abstract void execute(CommandContext context);
-    }
-
     @Getter @NonNull
     private final T plugin;
 

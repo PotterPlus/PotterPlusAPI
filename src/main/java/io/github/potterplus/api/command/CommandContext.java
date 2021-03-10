@@ -1,5 +1,7 @@
 package io.github.potterplus.api.command;
 
+import io.github.potterplus.api.command.sub.SubCommand;
+import io.github.potterplus.api.command.flag.CommandFlag;
 import io.github.potterplus.api.string.StringUtilities;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -283,7 +285,7 @@ public class CommandContext {
      * Delegates the command logic to a SubCommand.
      * @param sub The SubCommand to delegate to.
      */
-    public void delegate(CommandBase.SubCommand sub) {
+    public void delegate(SubCommand sub) {
         sub.execute(this);
     }
 }

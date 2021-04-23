@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class HoverMessage {
 
-    @NonNull @Getter
+    @Getter
     private boolean autoscroll;
     private List<String> message;
     private List<String> hoverText;

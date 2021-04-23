@@ -1,8 +1,11 @@
 package io.github.potterplus.api.location;
 
+import io.github.potterplus.api.misc.ServerUtilities;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+
+import java.util.Optional;
 
 public class SimpleLocation {
 
@@ -11,10 +14,12 @@ public class SimpleLocation {
     @Getter
     private final double x, y, z;
 
-    public SimpleLocation(String world, double x, double y, double z) {
-        this.worldName = world;
+    public SimpleLocation(String worldName, double x, double y, double z) {
+        this.worldName = worldName;
 
-        if (Bukkit.getWorld(worldName) == null) {
+        Optional<World> w = ServerUtilities.getWorld(worldName);
+
+        if (!w.isPresent()) {
             throw new NullPointerException(String.format("World '%s' does not exist", worldName));
         }
 

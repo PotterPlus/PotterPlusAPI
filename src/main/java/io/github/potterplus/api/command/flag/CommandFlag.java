@@ -17,5 +17,4 @@ public class CommandFlag {
     public String getFullShortFlag() {
         return String.format("-%s", getShortFlag());
     }
-
 }

@@ -115,17 +115,6 @@ public class Icon implements Supplier<ItemStack>, Cloneable {
                 .owningPlayer(uuid);
     }
 
-    /**
-     * Represents an enchantment and the logic to use when applying it.
-     */
-    @Builder @Data
-    public static class Enchant {
-
-        private Enchantment type;
-        private int level;
-        private boolean ignoreLevel;
-    }
-
     @Getter
     private Material type;
 
